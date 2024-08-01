@@ -30,15 +30,15 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   return (
     <>
       <Head>
-        <title>Next.js Conf 2022 Photos</title>
-        <meta
+        <title>Kelvon Agee</title>
+        {/* <meta
           property="og:image"
           content="https://nextjsconf-pics.vercel.app/og-image.png"
         />
         <meta
           name="twitter:image"
           content="https://nextjsconf-pics.vercel.app/og-image.png"
-        />
+        /> */}
       </Head>
       <main className="mx-auto max-w-[1960px] p-4">
         {photoId && (
@@ -50,7 +50,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           />
         )}
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
-          <div className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-lg bg-white/10 px-6 pb-16 pt-64 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0">
+          {/* <div className="after:content relative mb-5 flex h-[629px] flex-col items-center justify-end gap-4 overflow-hidden rounded-lg bg-white/10 px-6 pb-16 pt-64 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight lg:pt-0">
             <div className="absolute inset-0 flex items-center justify-center opacity-20">
               <span className="flex max-h-full max-w-full items-center justify-center">
                 <Bridge />
@@ -73,7 +73,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             >
               Clone and Deploy
             </a>
-          </div>
+          </div> */}
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link
               key={id}
@@ -101,35 +101,9 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           ))}
         </div>
       </main>
-      <footer className="p-6 text-center text-white/80 sm:p-12">
-        Thank you to{" "}
-        <a
-          href="https://edelsonphotography.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Josh Edelson
-        </a>
-        ,{" "}
-        <a
-          href="https://www.newrevmedia.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Jenny Morgan
-        </a>
-        , and{" "}
-        <a
-          href="https://www.garysextonphotography.com/"
-          target="_blank"
-          className="font-semibold hover:text-white"
-          rel="noreferrer"
-        >
-          Gary Sexton
-        </a>{" "}
-        for the pictures.
+      <footer className="p-6 text-center text-white/80 text-xs sm:p-12 flex justify-between">
+        <div>kelvon agee</div>
+        <div>los angeles</div>
       </footer>
     </>
   );
