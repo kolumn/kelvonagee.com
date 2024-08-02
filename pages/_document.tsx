@@ -17,7 +17,7 @@ class MyDocument extends Document {
           />
           <meta property="og:title" content="Kelvon Agee Pictures" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Kelvon Agee Pictures" />
+          <meta name="twitter:title" content="Kelvon Agee" />
           <meta
             name="twitter:description"
             content="Kelvon Agee Photo"
