@@ -17,11 +17,6 @@ const Home: NextPage = ({ currentPhoto }: { currentPhoto: ImageProps }) => {
 
   return (
     <Layout>
-      <Head>
-        <title>KA Photos</title>
-        <meta property="og:image" content={currentPhotoUrl} />
-        <meta name="twitter:image" content={currentPhotoUrl} />
-      </Head>
       <main className="mx-auto max-w-[1960px] p-4">
         <Carousel currentPhoto={currentPhoto} index={index} />
       </main>

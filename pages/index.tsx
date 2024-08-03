@@ -9,6 +9,7 @@ import cloudinary from '../utils/cloudinary'
 import getBase64ImageUrl from '../utils/generateBlurPlaceholder'
 import type { ImageProps } from '../utils/types'
 import { useLastViewedPhoto } from '../utils/useLastViewedPhoto'
+import Hero from '~/components/Hero'
 
 const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   const router = useRouter()
@@ -27,6 +28,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
 
   return (
     <Layout>
+      <Hero />
       <div className="mx-auto max-w-[1960px] p-4">
         {photoId && (
           <Modal

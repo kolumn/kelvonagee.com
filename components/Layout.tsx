@@ -4,6 +4,7 @@ import { Inter as FontSans, PT_Mono } from 'next/font/google'
 import { cn } from '~/utils/cn'
 import { PlayIcon } from '@heroicons/react/24/outline'
 import Hero from './Hero'
+import { useRouter } from 'next/router'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -23,6 +24,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const router = useRouter()
+  const isInCarouselMode = router.asPath.startsWith('/p')
+
   return (
     <>
       <Head>
@@ -43,20 +47,24 @@ export default function RootLayout({
         />
       </Head>
       <div className={cn('bg-black font-sans antialiased', fontSans.variable)}>
-        <div className=" flex min-h-screen flex-col">
-          <div className="fixed left-0 top-0 z-40 m-4 flex w-[calc(100vw_-_2rem)] justify-between p-4 text-xs font-light text-white mix-blend-difference">
+        <div className="flex min-h-screen flex-col">
+          <div
+            className={cn(
+              'fixed left-0 top-0 z-40 m-4 flex w-[calc(100vw_-_2rem)] justify-between p-4 text-xs font-light text-white mix-blend-difference',
+              { 'opacity-0': isInCarouselMode }
+            )}
+          >
             <div className="max-w-52">
               multi-disciplinary photographer based in los angeles
             </div>
             <div>information</div>
           </div>
-          <Hero />
-
-          {/* <MainNav items={siteConfig.mainNav} /> */}
           <main className="flex-1 bg-black">{children}</main>
           <footer className="flex justify-between p-6 text-center text-xs text-white/80 sm:p-12">
             <div>&copy; copyright 2016 — 2024. kelvon agee</div>
-            <div>—</div>
+            <div>
+              <a href="mailto:kelvon@kelvonagee.com">contact</a>
+            </div>
           </footer>
         </div>
       </div>
