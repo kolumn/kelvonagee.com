@@ -23,6 +23,9 @@ export default function Hero() {
       videoRef.current.pause()
     } else {
       playMedia()
+      videoRef.current.onended = function (e) {
+        setReel({ isPlaying: false })
+      }
     }
   }
 
@@ -42,7 +45,7 @@ export default function Hero() {
       />
       <h1
         className={cn(
-          'duration-50 pointer-events-none absolute bottom-2 left-4 z-20 text-xl font-black uppercase leading-[80%] text-white mix-blend-difference transition-opacity md:text-7xl lg:text-[3vw]',
+          'duration-50 pointer-events-none absolute bottom-2 left-4 z-20 text-xl font-black uppercase leading-none text-white mix-blend-difference transition-opacity md:text-5xl lg:text-[3vw] lg:leading-[82%]',
           { '!opacity-0': isPlaying }
         )}
       >
@@ -59,7 +62,7 @@ export default function Hero() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="h-16 w-16 opacity-0 transition-opacity duration-200 hover:opacity-100"
+            className="h-12 w-12 opacity-0 transition-opacity duration-200 hover:opacity-100"
           >
             <path
               fillRule="evenodd"
@@ -73,7 +76,7 @@ export default function Hero() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="h-16 w-16"
+            className="h-12 w-12"
           >
             <path d="M6.3 2.84A1.5 1.5 0 0 0 4 4.11v11.78a1.5 1.5 0 0 0 2.3 1.27l9.344-5.891a1.5 1.5 0 0 0 0-2.538L6.3 2.841Z" />
           </svg>

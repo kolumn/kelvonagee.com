@@ -21,7 +21,7 @@ export default function Navbar() {
         <Link href="/">
           <h1
             className={cn(
-              'z-100 pointer-events-none absolute left-1/2 top-2 -translate-x-1/2 text-right text-xl font-black uppercase leading-[80%] text-black transition-opacity duration-1000 md:text-2xl',
+              'z-100 pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 text-right text-xs font-black uppercase text-black transition-opacity duration-1000 md:text-base',
               {
                 'mix-blend-overlay': isPlaying,
               }
@@ -30,7 +30,9 @@ export default function Navbar() {
             Kelvon Agee
           </h1>
         </Link>
-        <div className="cursor-pointer font-bold uppercase">information</div>
+        <div className="cursor-pointer text-xs font-black uppercase md:text-base">
+          information
+        </div>
       </div>
     </div>
   )
