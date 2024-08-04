@@ -1,5 +1,4 @@
-import { PlayIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
-import { createRef, useEffect, useState } from 'react'
+import { createRef } from 'react'
 import { cn } from '~/utils/cn'
 import { useAtom } from 'jotai'
 import { reelAtom } from '~/store'
@@ -10,12 +9,6 @@ export default function Hero() {
   const videoRef = createRef<HTMLVideoElement>()
   const [{ isPlaying }, setReel] = useAtom(reelAtom)
   const isInCarouselMode = router.asPath.startsWith('/p')
-
-  // useEffect(() => {
-  //   window.addEventListener('unhandledrejection', (event) => {
-  //     console.log(event.reason)
-  //   })
-  // }, [])
 
   async function playMedia() {
     try {
@@ -30,15 +23,13 @@ export default function Hero() {
       videoRef.current.pause()
     } else {
       playMedia()
-      // videoRef.current.currentTime = 0.1
-      // videoRef.current.play()
     }
   }
 
   if (isInCarouselMode) return <></>
 
   return (
-    <div className="relative m-4 flex aspect-video w-[calc(100vw_-_2rem)] flex-col justify-between bg-white p-4 xl:min-h-[calc(100vh_-_6rem)]">
+    <div className="relative mx-4 mt-4 flex aspect-video w-[calc(100vw_-_2rem)] flex-col justify-between bg-white p-4 xl:min-h-[calc(100vh_-_6rem)]">
       <video
         controls
         playsInline
@@ -49,52 +40,43 @@ export default function Hero() {
           { 'z-[1] !opacity-0': !isPlaying }
         )}
       />
-
-      {/* <video
-        ref={videoRef}
-        controls
-        autoPlay
-        loop
-        playsInline
-        poster="/og-image.png"
-        src="//res.cloudinary.com/dpad3bstn/video/upload/v1722708337/kelvon-agee-cine-reel_qmpfvz.mp4"
-        className={cn(
-          'pointer-events-none absolute left-0 top-0 z-10 h-full w-full object-cover outline-none',
-          { '!z-[-10] !opacity-0': !isPlaying }
-        )}
-      >
-        <source
-          src="//res.cloudinary.com/dpad3bstn/video/upload/f_auto:video,q_auto/kelvon-agee-cine-reel_qmpfvz"
-          type="video/mp4"
-        />
-        <source
-          src="//res.cloudinary.com/dpad3bstn/video/upload/v1722708337/kelvon-agee-cine-reel_qmpfvz.mp4"
-          type="video/mp4"
-        />
-        <source
-          src="//res.cloudinary.com/dpad3bstn/video/upload/v1722727479/kelvon-agee-cine-reel_noxmw1.webm"
-          type="video/webm"
-        />
-        Your browser does not support the video tag.
-      </video> */}
       <h1
         className={cn(
-          'pointer-events-none absolute bottom-2 left-4 z-20 text-xl font-black uppercase leading-[80%] text-white mix-blend-difference transition-opacity duration-50 md:text-7xl lg:text-[3vw]',
+          'duration-50 pointer-events-none absolute bottom-2 left-4 z-20 text-xl font-black uppercase leading-[80%] text-white mix-blend-difference transition-opacity md:text-7xl lg:text-[3vw]',
           { '!opacity-0': isPlaying }
         )}
       >
         multi-disciplinary <br />
         photographer based <br />
-        in los angeles, ca.
+        in los angeles, ca
       </h1>
       <div
         className="absolute left-1/2 top-1/2 z-40 h-16 w-16 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference"
         onClick={() => handleVideo()}
       >
         {isPlaying ? (
-          <EyeSlashIcon className="opacity-0 transition-opacity duration-200 hover:opacity-100" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="h-16 w-16 opacity-0 transition-opacity duration-200 hover:opacity-100"
+          >
+            <path
+              fillRule="evenodd"
+              d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l14.5 14.5a.75.75 0 1 0 1.06-1.06l-1.745-1.745a10.029 10.029 0 0 0 3.3-4.38 1.651 1.651 0 0 0 0-1.185A10.004 10.004 0 0 0 9.999 3a9.956 9.956 0 0 0-4.744 1.194L3.28 2.22ZM7.752 6.69l1.092 1.092a2.5 2.5 0 0 1 3.374 3.373l1.091 1.092a4 4 0 0 0-5.557-5.557Z"
+              clipRule="evenodd"
+            />
+            <path d="m10.748 13.93 2.523 2.523a9.987 9.987 0 0 1-3.27.547c-4.258 0-7.894-2.66-9.337-6.41a1.651 1.651 0 0 1 0-1.186A10.007 10.007 0 0 1 2.839 6.02L6.07 9.252a4 4 0 0 0 4.678 4.678Z" />
+          </svg>
         ) : (
-          <PlayIcon />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="h-16 w-16"
+          >
+            <path d="M6.3 2.84A1.5 1.5 0 0 0 4 4.11v11.78a1.5 1.5 0 0 0 2.3 1.27l9.344-5.891a1.5 1.5 0 0 0 0-2.538L6.3 2.841Z" />
+          </svg>
         )}
       </div>
     </div>
