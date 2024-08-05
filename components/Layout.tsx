@@ -29,6 +29,7 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>{metadata.title as string}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={metadata.description as string} />
         <meta property="og:site_name" content={metadata.title as string} />
         <meta
