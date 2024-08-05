@@ -54,7 +54,7 @@ export default function Hero() {
         in los angeles, ca
       </h1>
       <div
-        className="absolute left-1/2 top-1/2 z-40 h-16 w-16 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference"
+        className="absolute left-1/2 top-1/2 z-40 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference"
         onClick={() => handleVideo()}
       >
         {isPlaying ? (
@@ -62,7 +62,7 @@ export default function Hero() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="h-12 w-12 opacity-0 transition-opacity duration-200 hover:opacity-100"
+            className="h-8 w-8 opacity-0 transition-opacity duration-200 hover:opacity-100 md:h-12 md:w-12"
           >
             <path
               fillRule="evenodd"
@@ -76,7 +76,7 @@ export default function Hero() {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="h-12 w-12"
+            className="h-8 w-8 md:h-12 md:w-12"
           >
             <path d="M6.3 2.84A1.5 1.5 0 0 0 4 4.11v11.78a1.5 1.5 0 0 0 2.3 1.27l9.344-5.891a1.5 1.5 0 0 0 0-2.538L6.3 2.841Z" />
           </svg>
