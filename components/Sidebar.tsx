@@ -25,7 +25,7 @@ export default function Sidebar() {
           }
         )}
       >
-        <div className="flex h-full flex-col overflow-auto p-4">
+        <div className="flex h-full scroll-pb-10 flex-col overflow-auto p-4">
           <div
             className="m-4 cursor-pointer self-end text-xs font-black uppercase md:text-base"
             onClick={() => setSidebar({ isOpen: false })}

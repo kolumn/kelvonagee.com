@@ -32,7 +32,11 @@ export default function Hero() {
   if (isInCarouselMode) return <></>
 
   return (
-    <div className="relative mx-2 mt-2 flex aspect-video w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:w-[calc(100vw_-_2rem)] md:p-4 xl:min-h-[calc(100vh_-_6rem)]">
+    <div
+      className={cn(
+        'relative mx-2 mt-2 flex aspect-video w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:w-[calc(100vw_-_2rem)] md:p-4 xl:min-h-[calc(100vh_-_6rem)]'
+      )}
+    >
       <video
         controls
         playsInline
