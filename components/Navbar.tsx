@@ -18,11 +18,11 @@ export default function Navbar() {
       )}
     >
       <div className="relative flex w-full justify-between font-light text-black">
-        {/* <div className="max-w-52 uppercase">&nbsp;</div> */}
+        <div className="max-w-52 uppercase">&nbsp;</div>
         <Link href="/">
           <h1
             className={cn(
-              'text-xs font-black uppercase text-black md:text-base',
+              'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-black uppercase text-black md:text-base',
               {
                 'mix-blend-overlay': isPlaying,
               }

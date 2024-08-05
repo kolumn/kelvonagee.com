@@ -45,7 +45,7 @@ export default function Hero() {
       />
       <h1
         className={cn(
-          'duration-50 pointer-events-none absolute bottom-2 left-4 z-20 text-xl font-black uppercase leading-none text-white mix-blend-difference transition-opacity md:text-5xl lg:text-[3vw] lg:leading-[92%]',
+          'duration-50 pointer-events-none absolute bottom-4 left-4 z-20 text-xl font-black uppercase leading-none text-white mix-blend-difference transition-opacity md:text-5xl lg:text-[5vw] lg:leading-[88%]',
           { '!opacity-0': isPlaying }
         )}
       >
