@@ -2,10 +2,11 @@ import { cn } from '~/utils/cn'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useAtom } from 'jotai'
-import { reelAtom } from '~/store'
+import { reelAtom, sidebarAtom } from '~/store'
 
 export default function Navbar() {
   const [{ isPlaying }, setReel] = useAtom(reelAtom)
+  const [{ isOpen }, setSidebar] = useAtom(sidebarAtom)
   const router = useRouter()
   const isInCarouselMode = router.asPath.startsWith('/p')
 
@@ -17,11 +18,11 @@ export default function Navbar() {
       )}
     >
       <div className="relative flex w-full justify-between font-light text-black">
-        <div className="max-w-52 uppercase">&nbsp;</div>
+        {/* <div className="max-w-52 uppercase">&nbsp;</div> */}
         <Link href="/">
           <h1
             className={cn(
-              'z-100 pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 text-right text-xs font-black uppercase text-black transition-opacity duration-1000 md:text-base',
+              'text-xs font-black uppercase text-black md:text-base',
               {
                 'mix-blend-overlay': isPlaying,
               }
@@ -30,7 +31,10 @@ export default function Navbar() {
             Kelvon Agee
           </h1>
         </Link>
-        <div className="cursor-pointer text-xs font-black uppercase md:text-base">
+        <div
+          className="cursor-pointer text-xs font-black uppercase md:text-base"
+          onClick={() => setSidebar({ isOpen: !isOpen })}
+        >
           information
         </div>
       </div>
