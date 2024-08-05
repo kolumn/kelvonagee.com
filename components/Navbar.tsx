@@ -22,7 +22,7 @@ export default function Navbar() {
         <Link href="/">
           <h1
             className={cn(
-              'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-black uppercase text-black md:text-base',
+              'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-black uppercase text-black md:left-2 md:-translate-x-0 md:text-base',
               {
                 'mix-blend-overlay': isPlaying,
               }
@@ -35,7 +35,7 @@ export default function Navbar() {
           className="cursor-pointer text-xs font-black uppercase md:text-base"
           onClick={() => setSidebar({ isOpen: !isOpen })}
         >
-          information
+          info
         </div>
       </div>
     </div>
