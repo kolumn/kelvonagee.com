@@ -52,8 +52,14 @@ export default function RootLayout({
           <Navbar />
           <Sidebar />
           <main className="flex-1 bg-black">{children}</main>
-          <footer className="flex flex-col justify-center gap-y-4 p-4 text-center text-xs font-black uppercase text-white/80">
-            <div className="w-content mx-auto flex gap-x-2">
+          <footer className="flex w-full items-center justify-between gap-y-4 px-4 pb-4 text-center text-xs font-black uppercase text-white/50">
+            <div className="flex items-center">
+              &copy; 2012-2024
+              <span className="hidden md:flex">
+                . Kelvon Agee. All Rights Reserved.
+              </span>
+            </div>
+            <div className="flex gap-x-2">
               <a href="mailto:kelvon@kelvonagee.com">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +87,6 @@ export default function RootLayout({
                 </svg>
               </a>
             </div>
-            <div>&copy; 2016-2024. Kelvon Agee. All Rights Reserved.</div>
           </footer>
         </div>
       </div>

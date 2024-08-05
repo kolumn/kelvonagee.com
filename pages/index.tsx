@@ -39,7 +39,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             }}
           />
         )}
-        <div className="columns-1 gap-2 md:gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
+        <div className="columns-1 gap-2 sm:columns-2 md:gap-4 xl:columns-3 2xl:columns-4">
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link
               key={id}
@@ -48,7 +48,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
               // @ts-ignore
               ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
               shallow
-              className="after:content group relative mb-2 md:mb-4 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
+              className="after:content group relative mb-2 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight md:mb-4"
             >
               <Image
                 alt=""
