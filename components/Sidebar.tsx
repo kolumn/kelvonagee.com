@@ -80,7 +80,7 @@ export default function Sidebar() {
               <Image fill src="/kelvon.jpeg" alt="Kelvon Agee" />
             </div>
             <div className="flex flex-col gap-y-2 font-black uppercase">
-              <span>Get in touch:</span>
+              <span>Contact:</span>
               <div>
                 <a href="mailto:kelvon@kelvonagee.com">kelvon@kelvonagee.com</a>{' '}
                 &bull; <a href="https://instagram.com/lordkelvon">Instagram</a>

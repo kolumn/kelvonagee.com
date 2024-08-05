@@ -32,7 +32,7 @@ export default function Hero() {
   if (isInCarouselMode) return <></>
 
   return (
-    <div className="relative mx-4 mt-4 flex aspect-video w-[calc(100vw_-_2rem)] flex-col justify-between bg-white p-4 xl:min-h-[calc(100vh_-_6rem)]">
+    <div className="relative mx-2 mt-2 flex aspect-video w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:w-[calc(100vw_-_2rem)] md:p-4 xl:min-h-[calc(100vh_-_6rem)]">
       <video
         controls
         playsInline
@@ -45,7 +45,7 @@ export default function Hero() {
       />
       <h1
         className={cn(
-          'duration-50 pointer-events-none absolute bottom-4 left-4 z-20 text-xl font-black uppercase leading-none text-white mix-blend-difference transition-opacity md:text-5xl lg:text-[5vw] lg:leading-[88%]',
+          'duration-50 pointer-events-none absolute bottom-2 left-2 z-20 text-xs font-black uppercase leading-none text-white mix-blend-difference transition-opacity md:bottom-4 md:left-4 md:text-5xl lg:text-[5vw] lg:leading-[88%]',
           { '!opacity-0': isPlaying }
         )}
       >

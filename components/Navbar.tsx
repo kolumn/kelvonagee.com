@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <div
       className={cn(
-        'fixed left-0 top-0 z-50 m-4 flex w-[calc(100vw_-_2rem)] p-4 text-xs',
+        'fixed left-0 top-0 z-50 m-2 flex w-[calc(100vw_-_1rem)] p-2 text-xs md:m-4 md:w-[calc(100vw_-_2rem)] md:p-4',
         { 'opacity-0': isInCarouselMode, 'mix-blend-overlay': isPlaying }
       )}
     >
