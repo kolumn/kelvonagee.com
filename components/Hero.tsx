@@ -42,6 +42,7 @@ export default function Hero() {
         playsInline
         ref={videoRef}
         src="//res.cloudinary.com/dpad3bstn/video/upload/f_auto:video,q_auto/kelvon-agee-cine-reel_qmpfvz"
+        onPlaying={() => setReel({ isPlaying: true })}
         className={cn(
           'absolute left-0 top-0 z-10 h-full w-full object-cover outline-none',
           { 'z-[1] !opacity-0': !isPlaying }
