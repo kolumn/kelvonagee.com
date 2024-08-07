@@ -33,57 +33,48 @@ export default function Sidebar() {
             close
           </div>
 
-          <div className="flex flex-col gap-y-5 p-4 text-sm font-black">
-            <p>
-              Kelvon Agee is an Emmy Award-winning camera operator and a
-              five-time Emmy nominee as a Director of Photography for
-              Discovery’s Deadliest Catch. With a career spanning over 12 years,
-              Kelvon has filmed some of the most iconic moments of unscripted
-              television. He is credited with over 200 hours of television as a
-              Producer and over 100 hours as a Director of Photography.
-            </p>
-            <p>
-              Kelvon’s work has taken him across the globe, filming in Alaska,
-              Hawaii, Canada, Mexico, El Salvador, Guatemala, Costa Rica, Chile,
-              Argentina, Antarctica, Norway, and Fiji. His portfolio includes
-              work on Deadliest Catch, its spin-offs Bloodline and The Viking
-              Returns, Ice Road Truckers, Maritime Masters: Expedition
-              Antarctica, Swamp People, World's Toughest Race: Eco-Challenge
-              Fiji, Bering Sea Gold, and Life Below Zero.
-            </p>
-            <p>
-              Most recently Kelvon shot the Netflix documentary Sprint: World's
-              Fastest Humans for docu-series powerhouse Box to Box Films and has
-              produced on two other upcoming series by the same company. Beyond
-              his on-set experience, Kelvon brings over five years of
-              post-production expertise, is proficient with AVID, and has
-              written five episodes of unscripted television.
-            </p>
-            <p>
-              Kelvon has also made his mark in branded content, creating
-              captivating visuals for Chris Paul's company 'Ohh Dip' and the
-              beauty brand 'Cotrini.'{' '}
-            </p>
-            <p>
-              His client list includes Discovery Channel, History Channel,
-              Netflix, Apple TV, National Geographic, Amazon Prime, and A&E.
-            </p>
-            <p>
-              Born near the powerful cataracts of Niagara Falls, NY, Kelvon is
-              also an avid gardener when he is not capturing beautiful stories
-              through his lens. Kelvon Agee’s dedication to his craft and his
-              ability to bring compelling stories to life make him a
-              distinguished professional in the world of television and
-              documentary filmmaking.
-            </p>
-            <div className="relative aspect-[4/6] w-full">
-              <Image fill src="/kelvon.jpeg" alt="Kelvon Agee" />
+          <div className="flex flex-col gap-y-6 p-4 text-sm font-black md:flex-row">
+            <div className="flex w-full flex-col gap-y-4 px-8 md:w-1/2">
+              <p>
+                I am a Producer/Director/DP with a documentary background, who
+                specializes in capturing authentic narratives with a cinematic
+                lens. Building my career in career in Documentary stoytelling, I
+                have produced over 200 and directed over 100 hours of
+                programming, including Deadliest Catch, Sprint: World’s Fastest
+                Humans, Maritime Masters: Expedition Antartica, Swamp People,
+                Worlds Toughest Race: Eco Challenge Fiji, and Life Below Zero;
+                while garnering 5 Prime Time Emmy Nominations fo r
+                Cinematography. I have also shot a wide range of campaigns, ads,
+                and organic content for clients such as Chris Paul, Seal
+                (Leica), Cotrini Beauty, The Big 10 Network and Logitech.
+              </p>
+              <p>
+                My personal mission is to authentically bring your story to
+                screen, and tell the narratives that need to be told. Equal
+                parts problem solver, creative and compassionate, I always push
+                my clients and colleagues alike to create dynamic, purposeful
+                content.
+              </p>
+              <div className="flex flex-col gap-y-1.5 text-xs font-black uppercase">
+                <span>Contact</span>
+                <div className="flex flex-col">
+                  <div>
+                    Email:
+                    <a href="mailto:kelvon@kelvonagee.com">
+                      kelvon@kelvonagee.com
+                    </a>
+                  </div>
+                  <div>
+                    <a href="https://instagram.com/lordkelvon">Instagram</a>{' '}
+                    &bull;{' '}
+                    <a href="https://www.imdb.com/name/nm5559286/">IMDB</a>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col gap-y-2 font-black uppercase">
-              <span>Contact:</span>
-              <div>
-                <a href="mailto:kelvon@kelvonagee.com">kelvon@kelvonagee.com</a>{' '}
-                &bull; <a href="https://instagram.com/lordkelvon">Instagram</a>
+            <div className="w-full md:order-first md:w-1/2">
+              <div className="relative aspect-[4/6] w-full">
+                <Image fill src="/kelvon.jpeg" alt="Kelvon Agee" />
               </div>
             </div>
           </div>

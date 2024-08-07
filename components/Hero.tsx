@@ -66,9 +66,9 @@ export default function Hero() {
         )}
       >
         <h1 className="text-xs font-black uppercase leading-none text-black mix-blend-difference md:text-5xl lg:text-[3.5vw] lg:leading-[88%]">
-          multi-disciplinary <br />
-          photographer based <br />
-          in los angeles, ca
+          5x Emmy Nominated <br />
+          Producer / Director <br />
+          based in Los Angeles
         </h1>
         <div
           className="items-ends hidden cursor-s-resize justify-end gap-x-2 sm:flex"
