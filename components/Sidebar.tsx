@@ -2,6 +2,7 @@ import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { sidebarAtom } from '~/store'
 import { cn } from '~/utils/cn'
+import { bio, image, contact } from '~/data/info'
 import Image from 'next/image'
 
 export default function Sidebar() {
@@ -32,49 +33,26 @@ export default function Sidebar() {
           >
             close
           </div>
-
           <div className="flex flex-col gap-y-6 p-4 text-sm font-black lg:flex-row">
             <div className="flex w-full flex-col gap-y-4 px-2.5 lg:w-1/2">
-              <p>
-                I am a Producer/Director/DP with a documentary background, who
-                specializes in capturing authentic narratives with a cinematic
-                lens. Building my career in career in Documentary stoytelling, I
-                have produced over 200 and directed over 100 hours of
-                programming, including Deadliest Catch, Sprint: World’s Fastest
-                Humans, Maritime Masters: Expedition Antartica, Swamp People,
-                Worlds Toughest Race: Eco Challenge Fiji, and Life Below Zero;
-                while garnering 5 Prime Time Emmy Nominations for
-                Cinematography. I have also shot a wide range of campaigns, ads,
-                and organic content for clients such as Chris Paul, Seal
-                (Leica), Cotrini Beauty, The Big 10 Network and Logitech.
-              </p>
-              <p>
-                My personal mission is to authentically bring your story to
-                screen, and tell the narratives that need to be told. Equal
-                parts problem solver, creative and compassionate, I always push
-                my clients and colleagues alike to create dynamic, purposeful
-                content.
-              </p>
+              <div
+                className="flex w-full flex-col gap-y-4"
+                dangerouslySetInnerHTML={{ __html: bio }}
+              />
               <div className="flex flex-col gap-y-1.5 text-xs font-black uppercase">
                 <span>Contact</span>
                 <div className="flex flex-col">
-                  <div>
-                    Email:
-                    <a href="mailto:kelvon@kelvonagee.com">
-                      kelvon@kelvonagee.com
-                    </a>
-                  </div>
-                  <div>
-                    <a href="https://instagram.com/lordkelvon">Instagram</a>{' '}
-                    &bull;{' '}
-                    <a href="https://www.imdb.com/name/nm5559286/">IMDB</a>
-                  </div>
+                  {contact.map(({ label, text, href }) => (
+                    <div>
+                      {label && <>{label}:</>} <a href={href}>{text}</a>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
             <div className="w-full px-2.5 lg:order-first lg:w-1/2">
               <div className="relative aspect-[4/6] w-full">
-                <Image fill src="/kelvon.jpeg" alt="Kelvon Agee" />
+                <Image fill src={image} alt="Kelvon Agee" />
               </div>
             </div>
           </div>
