@@ -45,7 +45,7 @@ export default function Hero() {
     <div
       ref={heroRef}
       className={cn(
-        'relative mx-2 mt-2 flex aspect-video w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:w-[calc(100vw_-_2rem)] md:p-4 xl:min-h-[calc(100vh_-_6rem)]'
+        'relative mx-2 mt-2 flex aspect-video md:h-[calc(100vh_-_6rem)] w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:w-[calc(100vw_-_2rem)] md:p-4 xl:h-[calc(100vh_-_2rem)]'
       )}
     >
       <video
@@ -55,13 +55,13 @@ export default function Hero() {
         src="//res.cloudinary.com/dpad3bstn/video/upload/f_auto:video,q_auto/kelvon-agee-cine-reel_qmpfvz"
         onPlaying={() => setReel({ isPlaying: true })}
         className={cn(
-          'absolute left-0 top-0 z-10 h-full w-full object-cover outline-none',
+          'object-fit absolute left-0 top-0 z-10 h-full w-full object-cover outline-none',
           { 'z-[1] !opacity-0': !isPlaying }
         )}
       />
       <div
         className={cn(
-          'duration-50 absolute bottom-2 left-2 z-20 flex w-[calc(100vw_-_4rem)] items-end justify-between transition-opacity md:bottom-4 md:left-4',
+          'duration-50 absolute bottom-2 left-2 z-20 flex w-[calc(100vw_-_2rem)] items-end justify-between transition-opacity md:bottom-4 md:left-4 md:w-[calc(100vw_-_4rem)]',
           { 'pointer-events-none !opacity-0': isPlaying }
         )}
       >
@@ -71,7 +71,7 @@ export default function Hero() {
           in los angeles, ca
         </h1>
         <div
-          className="items-ends flex cursor-s-resize justify-end gap-x-2"
+          className="items-ends hidden cursor-s-resize justify-end gap-x-2 sm:flex"
           onClick={() => handleScroll()}
         >
           <svg
