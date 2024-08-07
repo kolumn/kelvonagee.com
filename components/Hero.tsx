@@ -45,7 +45,7 @@ export default function Hero() {
     <div
       ref={heroRef}
       className={cn(
-        'relative mx-2 mt-2 flex aspect-video md:h-[calc(100vh_-_6rem)] w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:w-[calc(100vw_-_2rem)] md:p-4 xl:h-[calc(100vh_-_2rem)]'
+        'relative mx-2 mt-2 flex aspect-video w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:h-[calc(100vh_-_6rem)] md:w-[calc(100vw_-_2rem)] md:p-4 xl:h-[calc(100vh_-_2rem)]'
       )}
     >
       <video
@@ -90,7 +90,7 @@ export default function Hero() {
           </svg>
           <span className="text-right text-xs font-black uppercase leading-none text-black">
             Selected work <br />
-            (2016—2024)
+            (2012—2024)
           </span>
         </div>
       </div>

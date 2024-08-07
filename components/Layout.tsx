@@ -22,7 +22,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const router = useRouter()
-  const isInCarouselMode = router.asPath.startsWith('/p')
+  // const isInCarouselMode = router.asPath.startsWith('/p')
+  const handleScroll = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <>
@@ -86,6 +93,26 @@ export default function RootLayout({
                   />
                 </svg>
               </a>
+              <div
+                className="flex items-center gap-x-1 cursor-n-resize"
+                onClick={() => handleScroll()}
+              >
+                <span>Top</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-5 -mt-1.5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m11.99 7.5 3.75-3.75m0 0 3.75 3.75m-3.75-3.75v16.499H4.49"
+                  />
+                </svg>
+              </div>
             </div>
           </footer>
         </div>
