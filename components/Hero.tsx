@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 export default function Hero() {
   const router = useRouter()
   const videoRef = createRef<HTMLVideoElement>()
+  const heroRef = createRef<HTMLDivElement>()
   const [{ isPlaying }, setReel] = useAtom(reelAtom)
   const isInCarouselMode = router.asPath.startsWith('/p')
 
@@ -29,10 +30,20 @@ export default function Hero() {
     }
   }
 
+  const handleScroll = () => {
+    window.scrollTo({
+      // @ts-ignore
+      top: heroRef?.current?.clientHeight + 16,
+      left: 0,
+      behavior: 'smooth',
+    })
+  }
+
   if (isInCarouselMode) return <></>
 
   return (
     <div
+      ref={heroRef}
       className={cn(
         'relative mx-2 mt-2 flex aspect-video w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:w-[calc(100vw_-_2rem)] md:p-4 xl:min-h-[calc(100vh_-_6rem)]'
       )}
@@ -48,16 +59,42 @@ export default function Hero() {
           { 'z-[1] !opacity-0': !isPlaying }
         )}
       />
-      <h1
+      <div
         className={cn(
-          'duration-50 pointer-events-none absolute bottom-2 left-2 z-20 text-xs font-black uppercase leading-none text-white mix-blend-difference transition-opacity md:bottom-4 md:left-4 md:text-5xl lg:text-[5vw] lg:leading-[88%]',
-          { '!opacity-0': isPlaying }
+          'duration-50 absolute bottom-2 left-2 z-20 flex w-[calc(100vw_-_4rem)] items-end justify-between transition-opacity md:bottom-4 md:left-4',
+          { 'pointer-events-none !opacity-0': isPlaying }
         )}
       >
-        multi-disciplinary <br />
-        photographer based <br />
-        in los angeles, ca
-      </h1>
+        <h1 className="text-xs font-black uppercase leading-none text-black mix-blend-difference md:text-5xl lg:text-[3.5vw] lg:leading-[88%]">
+          multi-disciplinary <br />
+          photographer based <br />
+          in los angeles, ca
+        </h1>
+        <div
+          className="items-ends flex cursor-s-resize justify-end gap-x-2"
+          onClick={() => handleScroll()}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m11.99 16.5-3.75 3.75m0 0L4.49 16.5m3.75 3.75V3.75h11.25"
+            />
+          </svg>
+          <span className="text-right text-xs font-black uppercase leading-none text-black">
+            Selected work <br />
+            (2016—2024)
+          </span>
+        </div>
+      </div>
+
       <div
         className="absolute left-1/2 top-1/2 z-40 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference"
         onClick={() => handleVideo()}
