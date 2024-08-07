@@ -65,7 +65,7 @@ export default function Hero() {
           { 'pointer-events-none !opacity-0': isPlaying }
         )}
       >
-        <h1 className="text-xs font-black uppercase leading-none text-black mix-blend-difference md:text-5xl lg:text-[3.5vw] lg:leading-[88%]">
+        <h1 className="text-xs font-black uppercase leading-none text-black mix-blend-difference md:text-5xl lg:text-[3.5vw] lg:leading-[96%]">
           5x Emmy Nominated <br />
           Producer / Director <br />
           based in Los Angeles

@@ -33,8 +33,8 @@ export default function Sidebar() {
             close
           </div>
 
-          <div className="flex flex-col gap-y-6 p-4 text-sm font-black md:flex-row">
-            <div className="flex w-full flex-col gap-y-4 px-8 md:w-1/2">
+          <div className="flex flex-col gap-y-6 p-4 text-sm font-black lg:flex-row">
+            <div className="flex w-full flex-col gap-y-4 px-2.5 lg:w-1/2">
               <p>
                 I am a Producer/Director/DP with a documentary background, who
                 specializes in capturing authentic narratives with a cinematic
@@ -43,7 +43,7 @@ export default function Sidebar() {
                 programming, including Deadliest Catch, Sprint: World’s Fastest
                 Humans, Maritime Masters: Expedition Antartica, Swamp People,
                 Worlds Toughest Race: Eco Challenge Fiji, and Life Below Zero;
-                while garnering 5 Prime Time Emmy Nominations fo r
+                while garnering 5 Prime Time Emmy Nominations for
                 Cinematography. I have also shot a wide range of campaigns, ads,
                 and organic content for clients such as Chris Paul, Seal
                 (Leica), Cotrini Beauty, The Big 10 Network and Logitech.
@@ -72,7 +72,7 @@ export default function Sidebar() {
                 </div>
               </div>
             </div>
-            <div className="w-full md:order-first md:w-1/2">
+            <div className="w-full px-2.5 lg:order-first lg:w-1/2">
               <div className="relative aspect-[4/6] w-full">
                 <Image fill src="/kelvon.jpeg" alt="Kelvon Agee" />
               </div>
