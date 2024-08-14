@@ -20,7 +20,7 @@ export default function Sidebar() {
     <>
       <div
         className={cn(
-          'fixed right-0 top-0 z-50 h-screen w-full translate-x-full bg-black text-white transition-all duration-200 md:w-1/2',
+          'fixed right-0 top-0 z-50 h-dvh w-full translate-x-full bg-black text-white transition-all duration-200 md:w-1/2',
           {
             'translate-x-0': isOpen,
           }
@@ -33,24 +33,24 @@ export default function Sidebar() {
           >
             close
           </div>
-          <div className="flex flex-col gap-y-6 p-4 text-sm font-black lg:flex-row">
-            <div className="flex w-full flex-col gap-y-4 px-2.5 lg:w-1/2">
+          <div className="flex flex-col gap-6 p-4 text-sm font-black lg:flex-row">
+            <div className="flex w-full flex-col gap-y-4 lg:w-1/2">
               <div
                 className="flex w-full flex-col gap-y-4"
                 dangerouslySetInnerHTML={{ __html: bio }}
               />
-              <div className="flex flex-col gap-y-1.5 text-xs font-black uppercase">
+              <div className="flex flex-col gap-y-1 text-xs font-black uppercase">
                 <span>Contact</span>
                 <div className="flex flex-col">
-                  {contact.map(({ label, text, href }) => (
-                    <div>
-                      {label && <>{label}:</>} <a href={href}>{text}</a>
-                    </div>
+                  {contact.map(({ label, text, href }, idx) => (
+                    <a key={idx} href={href}>
+                      {text}
+                    </a>
                   ))}
                 </div>
               </div>
             </div>
-            <div className="w-full px-2.5 lg:order-first lg:w-1/2">
+            <div className="w-full lg:w-1/2">
               <div className="relative aspect-[4/6] w-full">
                 <Image fill src={image} alt="Kelvon Agee" />
               </div>
