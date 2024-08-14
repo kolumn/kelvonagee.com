@@ -33,7 +33,7 @@ export default function Sidebar() {
           >
             close
           </div>
-          <div className="flex flex-col gap-6 p-4 text-sm font-black lg:flex-row">
+          <div className="flex flex-col gap-8 p-4 text-sm font-black lg:flex-row">
             <div className="flex w-full flex-col gap-y-4 lg:w-1/2">
               <div
                 className="flex w-full flex-col gap-y-4"

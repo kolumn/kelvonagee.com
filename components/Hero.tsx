@@ -96,7 +96,7 @@ export default function Hero() {
       </div>
 
       <div
-        className="absolute left-1/2 top-1/2 z-40 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference"
+        className="absolute left-1/2 top-1/2 z-40 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference transition duration-200 hover:scale-125"
         onClick={() => handleVideo()}
       >
         {isPlaying ? (
