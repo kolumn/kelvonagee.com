@@ -67,7 +67,6 @@ export default function Hero() {
         setReel({ isPlaying: false })
       }
     }
-    console.log('videoRef.currentTime', videoRef.current.currentTime)
   }
 
   const handleLoadedMetadata = () => {
@@ -110,16 +109,29 @@ export default function Hero() {
         />
 
         <div
-          className="absolute left-1/2 top-1/2 z-40 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference transition duration-200 hover:scale-125"
+          className="absolute right-0 top-1/2 z-40 -translate-y-1/2 translate-x-full cursor-pointer text-white mix-blend-difference"
           onClick={() => toggleVideo()}
         >
           {!isPlaying && (
-            <div className="flex flex-col gap-y-1 text-center text-xs font-black uppercase leading-none mix-blend-difference">
-              <div>Play reel</div>{' '}
-              <div>
-                {hasPlayed
-                  ? `[${formatTime(currentTime)} / ${formatTime(duration)}]`
-                  : `[${formatTime(duration)}]`}
+            <div className="flex flex-col gap-y-1 px-2 text-[9px] uppercase leading-none mix-blend-difference md:px-4 md:text-xs">
+              <div className="flex items-center gap-x-px">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  className="size-3 -translate-y-px"
+                >
+                  <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+                </svg>
+
+                <div className="font-black">Play reel</div>
+              </div>
+              <div className="flex items-center gap-x-px">
+                <div className="tracking-wider">
+                  {hasPlayed
+                    ? `[${formatTime(currentTime)} / ${formatTime(duration)}]`
+                    : `[${formatTime(duration)}]`}
+                </div>
               </div>
             </div>
           )}
@@ -128,9 +140,8 @@ export default function Hero() {
       <div className="flex flex-col pl-2 md:pl-4">
         <div className="flex-1">&nbsp;</div>
         <div className="flex w-full justify-between">
-          <h1 className="text-xs font-black uppercase leading-none text-black">
-            5x Emmy Nominated Producer <br />
-            &amp; Director based in Los Angeles
+          <h1 className="max-w-60 text-[9px] font-black uppercase leading-none text-black md:text-xs">
+            5x Emmy Nominated Producer &amp; Director based in Los Angeles
           </h1>
           <div
             className="items-ends hidden cursor-s-resize justify-end gap-x-2 sm:flex"
@@ -150,7 +161,7 @@ export default function Hero() {
                 d="m11.99 16.5-3.75 3.75m0 0L4.49 16.5m3.75 3.75V3.75h11.25"
               />
             </svg>
-            <div className="text-right text-xs font-black uppercase leading-none text-black">
+            <div className="text-right text-[9px] font-black uppercase leading-none text-black md:text-xs">
               Selected work <br />
               (2012—{year})
             </div>
