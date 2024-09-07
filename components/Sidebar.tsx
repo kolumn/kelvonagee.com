@@ -20,7 +20,7 @@ export default function Sidebar() {
     <>
       <div
         className={cn(
-          'fixed right-0 top-0 z-50 h-dvh w-full translate-x-full bg-black text-white transition-all duration-200 md:w-1/2',
+          't fixed right-0 top-0 z-50 h-dvh w-full translate-x-full bg-black text-white transition-all duration-500 ease-in-out md:w-1/2',
           {
             'translate-x-0': isOpen,
           }

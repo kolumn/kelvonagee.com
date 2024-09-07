@@ -16,6 +16,7 @@ import downloadPhoto from '../utils/downloadPhoto'
 import { range } from '../utils/range'
 import type { ImageProps, SharedModalProps } from '../utils/types'
 import Twitter from './Icons/Twitter'
+import { cn } from '../utils/cn'
 
 export default function SharedModal({
   index,
@@ -57,6 +58,7 @@ export default function SharedModal({
   })
 
   let currentImage = images ? images[index] : currentPhoto
+  const isLandscape = currentImage.width > currentImage.height
 
   const imageSource = `https://res.cloudinary.com/${
     process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
@@ -72,12 +74,20 @@ export default function SharedModal({
       }}
     >
       <div
-        className="relative z-50 flex aspect-[3/2] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto"
+        className={cn(
+          'relative z-50 flex aspect-[3/2] w-full max-w-7xl items-center wide:h-full xl:taller-than-854:h-auto',
+          { 'aspect-[4/5]': !isLandscape }
+        )}
         {...handlers}
       >
         {/* Main image */}
         <div className="w-full overflow-hidden">
-          <div className="relative flex aspect-[3/2] items-center justify-center">
+          <div
+            className={cn(
+              'relative flex aspect-[3/2] items-center justify-center',
+              { 'aspect-[4/5] max-h-[80dvh] mx-auto': !isLandscape }
+            )}
+          >
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={index}
@@ -93,7 +103,7 @@ export default function SharedModal({
                   width={navigation ? 1280 : 1920}
                   height={navigation ? 853 : 1280}
                   priority
-                  alt="KA Photo"
+                  alt=""
                   onLoad={() => setLoaded(true)}
                 />
               </motion.div>

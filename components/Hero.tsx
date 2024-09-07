@@ -1,14 +1,11 @@
 'use client'
 import Image from 'next/image'
-import { createRef, useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import { cn } from '~/utils/cn'
 import { useAtom } from 'jotai'
 import { reelAtom } from '~/store'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
-
-const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
-const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
 
 const variants = {
   open: { opacity: 1, y: 0 },
@@ -30,10 +27,18 @@ export default function Hero() {
   const [currentTime, setCurrentTime] = useState(0)
   const [{ isPlaying }, setReel] = useAtom(reelAtom)
   const [isLoaded, setIsLoaded] = useState(false)
-  //const [isInView, setIsInView] = useState(false)
+  const [isInView, setIsInView] = useState(false)
 
   const isInCarouselMode = router.asPath.startsWith('/p')
   const year = new Date().getFullYear()
+
+  useEffect(() => {
+    if (isPlaying) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isPlaying])
 
   async function playMedia() {
     try {
@@ -87,25 +92,43 @@ export default function Hero() {
     >
       <div className="relative h-full w-full">
         <motion.div
-          className={cn('relative h-full w-full')}
+          className={cn('relative h-full w-full overflow-hidden bg-black')}
           initial={false}
-          animate={
-            isLoaded
-              ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
-              : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
-          }
-          transition={{ delay: 0.5 }}
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
           viewport={{ once: true }}
+          onViewportEnter={() => setIsInView(true)}
         >
-          <Image
-            src="/kelvon.jpeg"
-            alt=""
-            onLoad={() => setIsLoaded(true)}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            fill
-            priority
-            style={{ objectFit: 'cover' }}
+          <motion.div
+            className="absolute right-0 top-0 z-10 h-full w-full bg-white"
+            initial={{ x: '0%' }}
+            animate={isInView && isLoaded ? { x: '100%' } : { x: '0%' }}
+            transition={{ delay: 0.25, duration: 1, ease: 'easeInOut' }}
           />
+
+          <motion.div
+            className="relative h-full w-full will-change-transform"
+            initial={{ opacity: 0, scale: 1.2 }}
+            animate={
+              isLoaded && isInView
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: 1.2 }
+            }
+            transition={{ duration: 1, delay: 1 }}
+          >
+            <Image
+              src="/kelvon.jpeg"
+              alt=""
+              onLoad={() => setIsLoaded(true)}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              fill
+              priority
+              style={{ objectFit: 'cover' }}
+            />
+          </motion.div>
         </motion.div>
 
         <div
@@ -116,7 +139,7 @@ export default function Hero() {
             initial={false}
             animate={isLoaded ? 'open' : 'closed'}
             variants={variants}
-            transition={{ delay: 1 }}
+            transition={{ delay: 1.5 }}
             className="flex flex-col gap-y-1 px-2 text-[9px] uppercase leading-none mix-blend-difference will-change-transform md:px-4 md:text-xs"
           >
             <div className="flex items-center gap-x-px">
@@ -147,7 +170,7 @@ export default function Hero() {
           initial={false}
           animate={isLoaded ? 'open' : 'closed'}
           variants={variants}
-          transition={{ delay: 1.25 }}
+          transition={{ delay: 2 }}
           className="flex w-full justify-between will-change-transform"
         >
           <h1 className="max-w-60 text-[9px] font-black uppercase leading-none text-black md:text-xs">
@@ -163,7 +186,7 @@ export default function Hero() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-6 translate-y-px"
             >
               <path
                 strokeLinecap="round"
@@ -188,7 +211,7 @@ export default function Hero() {
         playsInline
         src="//res.cloudinary.com/dpad3bstn/video/upload/f_auto:video,q_auto/kelvonagee-reel"
         className={cn(
-          'absolute left-1/2 top-1/2 z-20 aspect-video max-w-[80vw] -translate-x-1/2 -translate-y-1/2 outline-none',
+          'fixed left-1/2 top-1/2 z-40 aspect-video max-w-[80vw] -translate-x-1/2 -translate-y-1/2 outline-none',
           {
             'pointer-events-none z-[-1] !opacity-0': !isPlaying,
           }
@@ -198,7 +221,7 @@ export default function Hero() {
         <div
           onClick={() => toggleVideo()}
           className={cn(
-            'duration-50 absolute inset-0 h-full w-full bg-black opacity-0 transition-opacity',
+            'fixed inset-0 z-20 bg-black/70 opacity-0 backdrop-blur-2xl transition-opacity',
             {
               'opacity-100': isPlaying,
             }
