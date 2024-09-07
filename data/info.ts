@@ -3,7 +3,7 @@ export const bio = `
   <p>I have also shot a wide range of campaigns, ads, and organic content for clients such as NBA Legend Chris Paul, Multi-Grammy Award Winning Superstar Seal (Leica), Luxury Skin Boutique Cotrini Beauty, The Dick Butkus Award’s( Big 10 Network) and Global Tech Leader Logitech. </p>
   <p>My personal mission is to authentically bring your story to screen and tell the narratives that need to be told. As a creative, problem solver, and leader, I always push my clients and colleagues alike to create dynamic, purposeful content and have fun while doing it.</p>
 `
-export const heroPhoto = '/kelvon.jpeg'
+export const heroPhoto = '/hero.jpg'
 export const sidebarPhoto = '/scene.jpg'
 
 export const contact = [
