@@ -61,7 +61,7 @@ export default function RootLayout({
           <Navbar />
           <Sidebar />
           <main className="flex-1 bg-black">{children}</main>
-          <footer className="flex w-full items-center justify-between gap-y-4 px-4 pt-10 pb-4 text-center text-xs font-black uppercase text-white/50 md:pt-20">
+          <footer className="flex w-full items-center justify-between gap-y-4 px-4 pb-4 pt-10 text-center text-xs font-black uppercase text-white/50 md:pt-20">
             <div className="flex items-center">
               &copy; 2012-{year}
               <span className="hidden md:flex">
@@ -106,7 +106,7 @@ export default function RootLayout({
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="-mt-2 size-5"
+                  className="size-5 -translate-y-1.5"
                 >
                   <path
                     strokeLinecap="round"

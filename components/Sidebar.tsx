@@ -28,7 +28,7 @@ export default function Sidebar() {
       >
         <div className="flex h-full flex-col overflow-auto p-2 md:p-4">
           <div
-            className="m-2 cursor-pointer self-end text-xs font-black uppercase md:m-4 md:text-base"
+            className="m-2 cursor-pointer self-end text-xs font-black uppercase sm:text-sm md:m-4"
             onClick={() => setSidebar({ isOpen: false })}
           >
             close
@@ -47,14 +47,32 @@ export default function Sidebar() {
               </div>
 
               <div
-                className="flex w-full flex-col gap-y-4 lg:max-w-[calc(100%-10rem)]"
+                className="flex w-full flex-col gap-y-4 text-base lg:max-w-[calc(100%-10rem)]"
                 dangerouslySetInnerHTML={{ __html: bio }}
               />
               <div className="flex flex-col gap-y-1.5 text-xs font-black uppercase">
-                <div>Contact</div>
+                <div className="text-base">Contact</div>
                 <div className="flex flex-col">
                   {contact.map(({ label, text, href }, idx) => (
-                    <a key={idx} href={href} className="hover:text-white/90">
+                    <a
+                      key={idx}
+                      href={href}
+                      className="flex items-center gap-x-2 transition-all hover:bg-white hover:text-black w-max pr-1"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-2.5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                        />
+                      </svg>
                       {text}
                     </a>
                   ))}

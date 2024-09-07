@@ -27,7 +27,6 @@ export default function Hero() {
   const [currentTime, setCurrentTime] = useState(0)
   const [{ isPlaying }, setReel] = useAtom(reelAtom)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [isInView, setIsInView] = useState(false)
 
   const isInCarouselMode = router.asPath.startsWith('/p')
   const year = new Date().getFullYear()
@@ -90,49 +89,30 @@ export default function Hero() {
         'relative mx-2 mt-2 grid h-80 w-[calc(100vw_-_1rem)] grid-cols-2 bg-white sm:grid-cols-3 md:mx-4 md:mt-4 md:h-[calc(100vh_-_6rem)] md:w-[calc(100vw_-_2rem)] md:grid-cols-2 xl:h-[calc(100vh_-_2rem)]'
       )}
     >
-      <div className="relative h-full w-full">
+      <div className="relative h-full w-full overflow-hidden">
         <motion.div
-          className={cn('relative h-full w-full overflow-hidden bg-black')}
-          initial={false}
-          animate={isInView ? 'visible' : 'hidden'}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1 },
-          }}
-          viewport={{ once: true }}
-          onViewportEnter={() => setIsInView(true)}
+          className="relative h-full w-full will-change-transform"
+          initial={{ opacity: 0, scale: 1.2 }}
+          animate={
+            isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.2 }
+          }
+          transition={{ duration: 1, delay: 1 }}
         >
-          <motion.div
-            className="absolute right-0 top-0 z-10 h-full w-full bg-white"
-            initial={{ x: '0%' }}
-            animate={isInView && isLoaded ? { x: '100%' } : { x: '0%' }}
-            transition={{ delay: 0.25, duration: 1, ease: 'easeInOut' }}
+          <Image
+            className="object-cover"
+            src="/kelvon.jpeg"
+            alt=""
+            onLoad={() => setIsLoaded(true)}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            fill
+            priority
           />
-
-          <motion.div
-            className="relative h-full w-full will-change-transform"
-            initial={{ opacity: 0, scale: 1.2 }}
-            animate={
-              isLoaded && isInView
-                ? { opacity: 1, scale: 1 }
-                : { opacity: 0, scale: 1.2 }
-            }
-            transition={{ duration: 1, delay: 1 }}
-          >
-            <Image
-              src="/kelvon.jpeg"
-              alt=""
-              onLoad={() => setIsLoaded(true)}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              fill
-              priority
-              style={{ objectFit: 'cover' }}
-            />
-          </motion.div>
         </motion.div>
-
+      </div>
+      <div className="flex flex-col justify-between p-2 sm:col-span-2 md:col-span-1 md:p-4">
+        <div>&nbsp;</div>
         <div
-          className="absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-full cursor-pointer text-white mix-blend-difference"
+          className="cursor-pointer text-black"
           onClick={() => toggleVideo()}
         >
           <motion.div
@@ -140,7 +120,7 @@ export default function Hero() {
             animate={isLoaded ? 'open' : 'closed'}
             variants={variants}
             transition={{ delay: 1.5 }}
-            className="flex flex-col gap-y-1 px-2 text-[9px] uppercase leading-none mix-blend-difference will-change-transform md:px-4 md:text-xs"
+            className="flex flex-col gap-y-px text-xs uppercase leading-none will-change-transform md:text-xs"
           >
             <div className="flex items-center gap-x-px">
               <svg
@@ -163,9 +143,7 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-      </div>
-      <div className="flex flex-col p-2 sm:col-span-2 md:col-span-1 md:p-4">
-        <div className="flex-1">&nbsp;</div>
+
         <motion.div
           initial={false}
           animate={isLoaded ? 'open' : 'closed'}
@@ -173,7 +151,7 @@ export default function Hero() {
           transition={{ delay: 2 }}
           className="flex w-full justify-between will-change-transform"
         >
-          <h1 className="max-w-60 text-[9px] font-black uppercase leading-none text-black md:text-xs">
+          <h1 className="max-w-56 text-xs font-black uppercase leading-none text-black sm:text-sm">
             5x Emmy Nominated Producer &amp; Director based in Los Angeles
           </h1>
           <div
@@ -186,7 +164,7 @@ export default function Hero() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6 translate-y-px"
+              className="size-6 translate-y-1"
             >
               <path
                 strokeLinecap="round"
@@ -194,7 +172,7 @@ export default function Hero() {
                 d="m11.99 16.5-3.75 3.75m0 0L4.49 16.5m3.75 3.75V3.75h11.25"
               />
             </svg>
-            <div className="text-right text-[9px] font-black uppercase leading-none text-black md:text-xs">
+            <div className="text-right text-xs font-black uppercase leading-none text-black sm:text-sm">
               Selected work <br />
               (2012—{year})
             </div>
