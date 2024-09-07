@@ -194,7 +194,7 @@ export default function Hero() {
         playsInline
         src="//res.cloudinary.com/dpad3bstn/video/upload/f_auto:video,q_auto/kelvonagee-reel"
         className={cn(
-          'fixed left-1/2 top-1/2 z-40 aspect-video max-w-[80vw] -translate-x-1/2 -translate-y-1/2 outline-none',
+          'fixed left-1/2 top-1/2 z-40 aspect-video max-w-[90vw] -translate-x-1/2 -translate-y-1/2 outline-none md:max-w-[80vw]',
           {
             'pointer-events-none z-[-1] !opacity-0': !isPlaying,
           }
