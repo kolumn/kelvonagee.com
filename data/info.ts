@@ -9,6 +9,11 @@ export const bio = `
   <p>I have also shot a wide range of campaigns, ads, and organic content for clients such as NBA legend Chris Paul, multi-Grammy award-winning superstar Seal (Leica), luxury skin boutique Cotrini Beauty, The Dick Butkus Award (Big 10 Network), and global tech leader Logitech.</p>
   <p>My personal mission is to authentically bring your story to the screen and tell the narratives that need to be shared. As a creative, problem solver, and leader, I always push my clients and colleagues alike to create dynamic, purposeful content—while having fun along the way.</p>
 `
+
+export const heroText = `Emmy-Nominated Producer & Director (5x), Los Angeles`
+// export const heroText = `Five-Time Emmy-Nominated Producer and Director, LA-Based`
+// export const heroText = `Producer, Director, and DP telling stories that matter.`
+
 export const heroPhoto = '/hero.jpg'
 export const sidebarPhoto = '/scene.jpg'
 

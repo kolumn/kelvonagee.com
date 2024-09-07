@@ -117,6 +117,12 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
+          <div className="fixed left-0 top-0 h-2 w-full bg-black md:h-4">
+            &nbsp;
+          </div>
+          <div className="fixed bottom-0 left-0 h-2 w-full bg-black md:h-4">
+            &nbsp;
+          </div>
         </div>
       </div>
     </>

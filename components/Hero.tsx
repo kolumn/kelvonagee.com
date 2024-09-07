@@ -6,7 +6,7 @@ import { useAtom } from 'jotai'
 import { reelAtom } from '~/store'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
-import { heroPhoto } from '~/data/info'
+import { heroPhoto, heroText } from '~/data/info'
 
 const variants = {
   open: { opacity: 1, y: 0 },
@@ -117,10 +117,10 @@ export default function Hero() {
           animate={isLoaded ? 'open' : 'closed'}
           variants={variants}
           transition={{ delay: 1.5 }}
-          className="-ml-10 mix-blend-difference will-change-transform md:-ml-12"
+          className="-ml-10 mix-blend-difference will-change-transform md:-ml-16"
         >
-          <h1 className="max-w-lg text-base font-black uppercase leading-none text-white md:text-lg">
-            Five-Time Emmy-Nominated Producer and Director, LA-Based
+          <h1 className="max-w-md text-base font-black uppercase leading-none text-white md:text-lg">
+            {heroText}
           </h1>
         </motion.div>
 
