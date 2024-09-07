@@ -6,6 +6,7 @@ import { useAtom } from 'jotai'
 import { reelAtom } from '~/store'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+import { heroPhoto } from '~/data/info'
 
 const variants = {
   open: { opacity: 1, y: 0 },
@@ -100,7 +101,7 @@ export default function Hero() {
         >
           <Image
             className="object-cover"
-            src="/kelvon.jpeg"
+            src={heroPhoto}
             alt=""
             onLoad={() => setIsLoaded(true)}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
