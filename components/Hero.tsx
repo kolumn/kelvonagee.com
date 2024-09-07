@@ -1,15 +1,53 @@
-import { createRef } from 'react'
+'use client'
+import Image from 'next/image'
+import { createRef, useState } from 'react'
 import { cn } from '~/utils/cn'
 import { useAtom } from 'jotai'
 import { reelAtom } from '~/store'
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
+
+const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
+const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
+
+function FanImage({ src, ...rest }: { src: string; [key: string]: any }) {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+
+  return (
+    <motion.div
+      className={cn('relative h-full w-full')}
+      initial={false}
+      animate={
+        isLoaded && isInView
+          ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+          : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+      }
+      transition={{ duration: 1, delay: 1 }}
+      viewport={{ once: true }}
+      onViewportEnter={() => setIsInView(true)}
+    >
+      <Image src={src} alt="" onLoad={() => setIsLoaded(true)} {...rest} />
+    </motion.div>
+  )
+}
+
+const formatTime = (timeInSeconds) => {
+  const minutes = Math.floor(timeInSeconds / 60)
+  const seconds = Math.floor(timeInSeconds % 60)
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+}
 
 export default function Hero() {
   const router = useRouter()
   const videoRef = createRef<HTMLVideoElement>()
   const heroRef = createRef<HTMLDivElement>()
+  const [hasPlayed, setHasPlayed] = useState<Boolean>(false)
+  const [duration, setDuration] = useState(188)
+  const [currentTime, setCurrentTime] = useState(0)
   const [{ isPlaying }, setReel] = useAtom(reelAtom)
   const isInCarouselMode = router.asPath.startsWith('/p')
+  const year = new Date().getFullYear()
 
   async function playMedia() {
     try {
@@ -17,7 +55,8 @@ export default function Hero() {
     } catch (err) {}
   }
 
-  const handleVideo = () => {
+  const toggleVideo = () => {
+    setHasPlayed(true)
     setReel({ isPlaying: !isPlaying })
     if (videoRef.current === null) return
     if (isPlaying === true) {
@@ -27,6 +66,19 @@ export default function Hero() {
       videoRef.current.onended = function (e) {
         setReel({ isPlaying: false })
       }
+    }
+    console.log('videoRef.currentTime', videoRef.current.currentTime)
+  }
+
+  const handleLoadedMetadata = () => {
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration)
+    }
+  }
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      setCurrentTime(videoRef.current.currentTime)
     }
   }
 
@@ -45,85 +97,95 @@ export default function Hero() {
     <div
       ref={heroRef}
       className={cn(
-        'relative mx-2 mt-2 flex aspect-video w-[calc(100vw_-_1rem)] flex-col justify-between bg-white p-2 md:mx-4 md:mt-4 md:h-[calc(100vh_-_6rem)] md:w-[calc(100vw_-_2rem)] md:p-4 xl:h-[calc(100vh_-_2rem)]'
+        'relative mx-2 mt-2 grid h-80 w-[calc(100vw_-_1rem)] grid-cols-2 bg-white p-2 md:mx-4 md:mt-4 md:h-[calc(100vh_-_6rem)] md:w-[calc(100vw_-_2rem)] md:p-4 xl:h-[calc(100vh_-_2rem)]'
       )}
     >
-      <video
-        controls
-        playsInline
-        ref={videoRef}
-        src="//res.cloudinary.com/dpad3bstn/video/upload/f_auto:video,q_auto/kelvon-agee-cine-reel_qmpfvz"
-        onPlaying={() => setReel({ isPlaying: true })}
-        className={cn(
-          'object-fit absolute left-0 top-0 z-10 h-full w-full object-cover outline-none',
-          { 'z-[1] !opacity-0': !isPlaying }
-        )}
-      />
-      <div
-        className={cn(
-          'duration-50 absolute bottom-2 left-2 z-20 flex w-[calc(100vw_-_2rem)] items-end justify-between transition-opacity md:bottom-4 md:left-4 md:w-[calc(100vw_-_4rem)]',
-          { 'pointer-events-none !opacity-0': isPlaying }
-        )}
-      >
-        <h1 className="text-xs font-black uppercase leading-none text-black mix-blend-difference md:text-5xl lg:text-[3.5vw] lg:leading-[96%]">
-          5x Emmy Nominated <br />
-          Producer / Director <br />
-          based in Los Angeles
-        </h1>
+      <div className="relative h-full w-full">
+        <FanImage
+          src="/kelvon.jpeg"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          fill
+          priority
+          style={{ objectFit: 'cover' }}
+        />
+
         <div
-          className="items-ends hidden cursor-s-resize justify-end gap-x-2 sm:flex"
-          onClick={() => handleScroll()}
+          className="absolute left-1/2 top-1/2 z-40 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference transition duration-200 hover:scale-125"
+          onClick={() => toggleVideo()}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-6"
+          {!isPlaying && (
+            <div className="flex flex-col gap-y-1 text-center text-xs font-black uppercase leading-none mix-blend-difference">
+              <div>Play reel</div>{' '}
+              <div>
+                {hasPlayed
+                  ? `[${formatTime(currentTime)} / ${formatTime(duration)}]`
+                  : `[${formatTime(duration)}]`}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="flex flex-col pl-2 md:pl-4">
+        <div className="flex-1">&nbsp;</div>
+        <div className="flex w-full justify-between">
+          <h1 className="text-xs font-black uppercase leading-none text-black">
+            5x Emmy Nominated Producer <br />
+            &amp; Director based in Los Angeles
+          </h1>
+          <div
+            className="items-ends hidden cursor-s-resize justify-end gap-x-2 sm:flex"
+            onClick={() => handleScroll()}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m11.99 16.5-3.75 3.75m0 0L4.49 16.5m3.75 3.75V3.75h11.25"
-            />
-          </svg>
-          <span className="text-right text-xs font-black uppercase leading-none text-black">
-            Selected work <br />
-            (2012—2024)
-          </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m11.99 16.5-3.75 3.75m0 0L4.49 16.5m3.75 3.75V3.75h11.25"
+              />
+            </svg>
+            <div className="text-right text-xs font-black uppercase leading-none text-black">
+              Selected work <br />
+              (2012—{year})
+            </div>
+          </div>
         </div>
       </div>
 
-      <div
-        className="absolute left-1/2 top-1/2 z-40 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-white mix-blend-difference transition duration-200 hover:scale-125"
-        onClick={() => handleVideo()}
-      >
-        {isPlaying ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="h-8 w-8 opacity-0 transition-opacity duration-200 hover:opacity-100 md:h-12 md:w-12"
-          >
-            <path
-              fillRule="evenodd"
-              d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l14.5 14.5a.75.75 0 1 0 1.06-1.06l-1.745-1.745a10.029 10.029 0 0 0 3.3-4.38 1.651 1.651 0 0 0 0-1.185A10.004 10.004 0 0 0 9.999 3a9.956 9.956 0 0 0-4.744 1.194L3.28 2.22ZM7.752 6.69l1.092 1.092a2.5 2.5 0 0 1 3.374 3.373l1.091 1.092a4 4 0 0 0-5.557-5.557Z"
-              clipRule="evenodd"
-            />
-            <path d="m10.748 13.93 2.523 2.523a9.987 9.987 0 0 1-3.27.547c-4.258 0-7.894-2.66-9.337-6.41a1.651 1.651 0 0 1 0-1.186A10.007 10.007 0 0 1 2.839 6.02L6.07 9.252a4 4 0 0 0 4.678 4.678Z" />
-          </svg>
-        ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="h-8 w-8 md:h-12 md:w-12"
-          >
-            <path d="M6.3 2.84A1.5 1.5 0 0 0 4 4.11v11.78a1.5 1.5 0 0 0 2.3 1.27l9.344-5.891a1.5 1.5 0 0 0 0-2.538L6.3 2.841Z" />
-          </svg>
+      <video
+        ref={videoRef}
+        onLoadedMetadata={handleLoadedMetadata}
+        onTimeUpdate={handleTimeUpdate}
+        onPlaying={() => setReel({ isPlaying: true })}
+        controls
+        playsInline
+        src="//res.cloudinary.com/dpad3bstn/video/upload/f_auto:video,q_auto/kelvonagee-reel"
+        className={cn(
+          'absolute left-1/2 top-1/2 z-20 aspect-video max-w-[80vw] -translate-x-1/2 -translate-y-1/2 outline-none',
+          {
+            'pointer-events-none z-[1] !opacity-0': !isPlaying,
+          }
         )}
-      </div>
+      />
+      {isPlaying && (
+        <div
+          onClick={() => toggleVideo()}
+          className={cn(
+            'duration-50 absolute inset-0 h-full w-full bg-black opacity-0 transition-opacity',
+            {
+              'opacity-100': isPlaying,
+            }
+          )}
+        >
+          &nbsp;
+        </div>
+      )}
     </div>
   )
 }
