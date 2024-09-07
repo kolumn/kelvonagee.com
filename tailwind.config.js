@@ -17,6 +17,7 @@ module.exports = {
       xs: ['0.625rem', '.95rem'],
       sm: ['0.75rem', '1rem'],
       base: ['0.875rem', '1.35rem'],
+      lg: ['1.85rem', '1.5rem'],
     },
     extend: {
       boxShadow: {

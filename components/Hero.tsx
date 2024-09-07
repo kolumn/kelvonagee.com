@@ -112,16 +112,28 @@ export default function Hero() {
       </div>
       <div className="flex flex-col justify-between p-2 sm:col-span-2 md:col-span-1 md:p-4">
         <div>&nbsp;</div>
-        <div
-          className="cursor-pointer text-black"
-          onClick={() => toggleVideo()}
+        <motion.div
+          initial={false}
+          animate={isLoaded ? 'open' : 'closed'}
+          variants={variants}
+          transition={{ delay: 1.5 }}
+          className="-ml-10 mix-blend-difference will-change-transform md:-ml-12"
         >
-          <motion.div
-            initial={false}
-            animate={isLoaded ? 'open' : 'closed'}
-            variants={variants}
-            transition={{ delay: 1.5 }}
-            className="flex flex-col gap-y-px text-xs uppercase leading-none will-change-transform md:text-xs"
+          <h1 className="max-w-lg text-base font-black uppercase leading-none text-white md:text-lg">
+            Five-Time Emmy-Nominated Producer and Director, LA-Based
+          </h1>
+        </motion.div>
+
+        <motion.div
+          initial={false}
+          animate={isLoaded ? 'open' : 'closed'}
+          variants={variants}
+          transition={{ delay: 2 }}
+          className="flex w-full justify-between will-change-transform"
+        >
+          <div
+            className="cursor-pointer text-xs uppercase text-black sm:text-sm"
+            onClick={() => toggleVideo()}
           >
             <div className="flex items-center gap-x-px">
               <svg
@@ -136,46 +148,38 @@ export default function Hero() {
               <div className="font-black">Play reel</div>
             </div>
             <div className="flex items-center gap-x-px">
-              <div className="tracking-wider">
+              <div className="font-normal tracking-wider">
                 {hasPlayed
                   ? `[${formatTime(currentTime)} / ${formatTime(duration)}]`
                   : `[${formatTime(duration)}]`}
               </div>
             </div>
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={false}
-          animate={isLoaded ? 'open' : 'closed'}
-          variants={variants}
-          transition={{ delay: 2 }}
-          className="flex w-full justify-between will-change-transform"
-        >
-          <h1 className="max-w-56 text-xs font-black uppercase leading-none text-black sm:text-sm">
-            5x Emmy Nominated Producer &amp; Director based in Los Angeles
-          </h1>
-          <div
-            className="items-ends hidden cursor-s-resize justify-end gap-x-2 sm:flex"
-            onClick={() => handleScroll()}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6 translate-y-1"
+          </div>
+          <div className="hidden sm:flex sm:flex-col">
+            <div className="text-right text-xs font-black uppercase sm:text-sm">
+              Captured Frames
+            </div>
+            <div
+              className="flex cursor-s-resize items-center justify-end gap-x-1 font-normal"
+              onClick={() => handleScroll()}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m11.99 16.5-3.75 3.75m0 0L4.49 16.5m3.75 3.75V3.75h11.25"
-              />
-            </svg>
-            <div className="text-right text-xs font-black uppercase leading-none text-black sm:text-sm">
-              Selected work <br />
-              (2012—{year})
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-2.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m11.99 16.5-3.75 3.75m0 0L4.49 16.5m3.75 3.75V3.75h11.25"
+                />
+              </svg>
+              <div className="cursor-s-resize text-xs uppercase sm:text-sm">
+                [2012 - {year}]
+              </div>
             </div>
           </div>
         </motion.div>
