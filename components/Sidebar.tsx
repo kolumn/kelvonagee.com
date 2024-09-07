@@ -27,45 +27,43 @@ export default function Sidebar() {
         )}
       >
         <div className="mt-2 flex h-full items-start overflow-auto p-2 md:mt-4 md:p-4">
-          <div className="grid grid-cols-7">
-            <div className="col-span-4 flex flex-col gap-y-4 px-2">
-              <div className="text-xs font-black uppercase sm:text-sm">
-                About
-              </div>
+          <div className="grid grid-cols-6 overflow-hidden">
+            <div className="col-span-5 flex flex-col gap-y-4 px-2 text-xs font-black uppercase sm:text-sm">
+              <div>About</div>
               <div
-                className="flex w-full flex-col gap-y-4 text-base font-black"
+                className="flex w-full flex-col gap-y-4 text-base font-black normal-case"
                 dangerouslySetInnerHTML={{ __html: bio }}
               />
-            </div>
-
-            <div className="col-span-2 flex flex-col gap-y-4 text-xs font-black uppercase sm:text-sm">
-              <div>Contact</div>
-              <div className="flex flex-col">
-                {contact.map(({ label, text, href }, idx) => (
-                  <a
-                    key={idx}
-                    href={href}
-                    className="flex w-max items-center gap-x-2 pr-1 transition-all hover:bg-white hover:text-black"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="size-2.5"
+              <div className="order-first flex flex-col gap-y-4 md:order-last mb-2">
+                <div>Contact</div>
+                <div className="flex flex-col">
+                  {contact.map(({ label, text, href }, idx) => (
+                    <a
+                      key={idx}
+                      href={href}
+                      className="flex w-max items-center gap-x-2 pr-1 transition-all hover:bg-white hover:text-black"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                    {text}
-                  </a>
-                ))}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-2.5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                      {text}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
+
             <div
               className="cursor-pointer text-right text-xs font-black uppercase sm:text-sm"
               onClick={() => setSidebar({ isOpen: false })}
