@@ -7,34 +7,12 @@ import { reelAtom } from '~/store'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 
-// const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
-// const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
+const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
+const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
 
-function HeroImage({ src, ...rest }: { src: string; [key: string]: any }) {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [isInView, setIsInView] = useState(false)
-
-  return (
-    <motion.div
-      className={cn('relative h-full w-full')}
-      initial={false}
-      // animate={
-      //   isLoaded && isInView
-      //     ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
-      //     : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
-      // }
-      animate={
-        isLoaded && isInView
-          ? { filter: 'blur(0px)', opacity: 1 } // Ends with no blur
-          : { filter: 'blur(8px)', opacity: 0 } // Starts with a blur
-      }
-      transition={{ duration: 1, delay: 1 }}
-      viewport={{ once: true }}
-      onViewportEnter={() => setIsInView(true)}
-    >
-      <Image src={src} alt="" onLoad={() => setIsLoaded(true)} {...rest} />
-    </motion.div>
-  )
+const variants = {
+  open: { opacity: 1, y: 0 },
+  closed: { opacity: 0, y: -16 },
 }
 
 const formatTime = (timeInSeconds) => {
@@ -51,6 +29,9 @@ export default function Hero() {
   const [duration, setDuration] = useState(188)
   const [currentTime, setCurrentTime] = useState(0)
   const [{ isPlaying }, setReel] = useAtom(reelAtom)
+  const [isLoaded, setIsLoaded] = useState(false)
+  //const [isInView, setIsInView] = useState(false)
+
   const isInCarouselMode = router.asPath.startsWith('/p')
   const year = new Date().getFullYear()
 
@@ -105,46 +86,70 @@ export default function Hero() {
       )}
     >
       <div className="relative h-full w-full">
-        <HeroImage
-          src="/kelvon.jpeg"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          fill
-          priority
-          style={{ objectFit: 'cover' }}
-        />
+        <motion.div
+          className={cn('relative h-full w-full')}
+          initial={false}
+          animate={
+            isLoaded
+              ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+              : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+          }
+          transition={{ delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <Image
+            src="/kelvon.jpeg"
+            alt=""
+            onLoad={() => setIsLoaded(true)}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            fill
+            priority
+            style={{ objectFit: 'cover' }}
+          />
+        </motion.div>
 
         <div
-          className="absolute right-0 top-1/2 z-40 -translate-y-1/2 translate-x-full cursor-pointer text-white mix-blend-difference"
+          className="absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-full cursor-pointer text-white mix-blend-difference"
           onClick={() => toggleVideo()}
         >
-          {!isPlaying && (
-            <div className="flex flex-col gap-y-1 px-2 text-[9px] uppercase leading-none mix-blend-difference md:px-4 md:text-xs">
-              <div className="flex items-center gap-x-px">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className="size-3 -translate-y-px"
-                >
-                  <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
-                </svg>
+          <motion.div
+            initial={false}
+            animate={isLoaded ? 'open' : 'closed'}
+            variants={variants}
+            transition={{ delay: 1 }}
+            className="flex flex-col gap-y-1 px-2 text-[9px] uppercase leading-none mix-blend-difference will-change-transform md:px-4 md:text-xs"
+          >
+            <div className="flex items-center gap-x-px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="size-3 -translate-y-px"
+              >
+                <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+              </svg>
 
-                <div className="font-black">Play reel</div>
-              </div>
-              <div className="flex items-center gap-x-px">
-                <div className="tracking-wider">
-                  {hasPlayed
-                    ? `[${formatTime(currentTime)} / ${formatTime(duration)}]`
-                    : `[${formatTime(duration)}]`}
-                </div>
+              <div className="font-black">Play reel</div>
+            </div>
+            <div className="flex items-center gap-x-px">
+              <div className="tracking-wider">
+                {hasPlayed
+                  ? `[${formatTime(currentTime)} / ${formatTime(duration)}]`
+                  : `[${formatTime(duration)}]`}
               </div>
             </div>
-          )}
+          </motion.div>
         </div>
       </div>
       <div className="flex flex-col p-2 sm:col-span-2 md:col-span-1 md:p-4">
         <div className="flex-1">&nbsp;</div>
-        <div className="flex w-full justify-between">
+        <motion.div
+          initial={false}
+          animate={isLoaded ? 'open' : 'closed'}
+          variants={variants}
+          transition={{ delay: 1.25 }}
+          className="flex w-full justify-between will-change-transform"
+        >
           <h1 className="max-w-60 text-[9px] font-black uppercase leading-none text-black md:text-xs">
             5x Emmy Nominated Producer &amp; Director based in Los Angeles
           </h1>
@@ -171,7 +176,7 @@ export default function Hero() {
               (2012—{year})
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <video
@@ -185,7 +190,7 @@ export default function Hero() {
         className={cn(
           'absolute left-1/2 top-1/2 z-20 aspect-video max-w-[80vw] -translate-x-1/2 -translate-y-1/2 outline-none',
           {
-            'pointer-events-none z-[1] !opacity-0': !isPlaying,
+            'pointer-events-none z-[-1] !opacity-0': !isPlaying,
           }
         )}
       />
