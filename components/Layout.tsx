@@ -21,8 +21,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const router = useRouter()
+  // const router = useRouter()
   // const isInCarouselMode = router.asPath.startsWith('/p')
+  const year = new Date().getFullYear()
+
   const handleScroll = () => {
     window.scrollTo({
       top: 0,
@@ -59,15 +61,15 @@ export default function RootLayout({
           <Navbar />
           <Sidebar />
           <main className="flex-1 bg-black">{children}</main>
-          <footer className="flex w-full items-center justify-between gap-y-4 px-4 pb-4 text-center text-xs font-black uppercase text-white/50">
+          <footer className="flex w-full items-center justify-between gap-y-4 px-4 pt-10 pb-4 text-center text-xs font-black uppercase text-white/50 md:pt-20">
             <div className="flex items-center">
-              &copy; 2012-2024
+              &copy; 2012-{year}
               <span className="hidden md:flex">
                 . Kelvon Agee. All Rights Reserved.
               </span>
             </div>
             <div className="flex gap-x-2">
-              <a href="mailto:kelvon@kelvonagee.com">
+              {/* <a href="mailto:kelvon@kelvonagee.com">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -92,9 +94,9 @@ export default function RootLayout({
                     clipRule="evenodd"
                   />
                 </svg>
-              </a>
+              </a> */}
               <div
-                className="flex items-center gap-x-1 cursor-n-resize"
+                className="flex cursor-n-resize items-center gap-x-1"
                 onClick={() => handleScroll()}
               >
                 <span>Top</span>
@@ -104,7 +106,7 @@ export default function RootLayout({
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-5 -mt-1.5"
+                  className="-mt-2 size-5"
                 >
                   <path
                     strokeLinecap="round"

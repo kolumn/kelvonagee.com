@@ -7,10 +7,10 @@ import { reelAtom } from '~/store'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 
-const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
-const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
+// const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
+// const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
 
-function FanImage({ src, ...rest }: { src: string; [key: string]: any }) {
+function HeroImage({ src, ...rest }: { src: string; [key: string]: any }) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isInView, setIsInView] = useState(false)
 
@@ -18,10 +18,15 @@ function FanImage({ src, ...rest }: { src: string; [key: string]: any }) {
     <motion.div
       className={cn('relative h-full w-full')}
       initial={false}
+      // animate={
+      //   isLoaded && isInView
+      //     ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+      //     : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+      // }
       animate={
         isLoaded && isInView
-          ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
-          : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+          ? { filter: 'blur(0px)', opacity: 1 } // Ends with no blur
+          : { filter: 'blur(8px)', opacity: 0 } // Starts with a blur
       }
       transition={{ duration: 1, delay: 1 }}
       viewport={{ once: true }}
@@ -96,11 +101,11 @@ export default function Hero() {
     <div
       ref={heroRef}
       className={cn(
-        'relative mx-2 mt-2 grid h-80 w-[calc(100vw_-_1rem)] grid-cols-2 bg-white p-2 md:mx-4 md:mt-4 md:h-[calc(100vh_-_6rem)] md:w-[calc(100vw_-_2rem)] md:p-4 xl:h-[calc(100vh_-_2rem)]'
+        'relative mx-2 mt-2 grid h-80 w-[calc(100vw_-_1rem)] grid-cols-2 bg-white sm:grid-cols-3 md:mx-4 md:mt-4 md:h-[calc(100vh_-_6rem)] md:w-[calc(100vw_-_2rem)] md:grid-cols-2 xl:h-[calc(100vh_-_2rem)]'
       )}
     >
       <div className="relative h-full w-full">
-        <FanImage
+        <HeroImage
           src="/kelvon.jpeg"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           fill
@@ -137,7 +142,7 @@ export default function Hero() {
           )}
         </div>
       </div>
-      <div className="flex flex-col pl-2 md:pl-4">
+      <div className="flex flex-col p-2 sm:col-span-2 md:col-span-1 md:p-4">
         <div className="flex-1">&nbsp;</div>
         <div className="flex w-full justify-between">
           <h1 className="max-w-60 text-[9px] font-black uppercase leading-none text-black md:text-xs">

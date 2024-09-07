@@ -50,11 +50,11 @@ export default function Sidebar() {
                 className="flex w-full flex-col gap-y-4 lg:max-w-[calc(100%-10rem)]"
                 dangerouslySetInnerHTML={{ __html: bio }}
               />
-              <div className="flex flex-col gap-y-1 text-xs font-black uppercase">
-                <span>Contact</span>
+              <div className="flex flex-col gap-y-1.5 text-xs font-black uppercase">
+                <div>Contact</div>
                 <div className="flex flex-col">
                   {contact.map(({ label, text, href }, idx) => (
-                    <a key={idx} href={href}>
+                    <a key={idx} href={href} className="hover:text-white/90">
                       {text}
                     </a>
                   ))}
