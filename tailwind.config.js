@@ -20,6 +20,9 @@ module.exports = {
       lg: ['2rem', '1.75rem'],
     },
     extend: {
+      colors: {
+        accent: '#EAAA00',
+      },
       boxShadow: {
         highlight: 'inset 0 0 0 1px rgba(255, 255, 255, 0.05)',
       },

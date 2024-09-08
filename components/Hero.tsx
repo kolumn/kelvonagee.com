@@ -117,9 +117,9 @@ export default function Hero() {
           animate={isLoaded ? 'open' : 'closed'}
           variants={variants}
           transition={{ delay: 1.5 }}
-          className="-ml-10 mix-blend-difference will-change-transform md:-ml-16"
+          className="-ml-10 mix-blend-multiply will-change-transform md:-ml-16"
         >
-          <h1 className="max-w-md text-base font-black uppercase leading-none text-white md:text-lg">
+          <h1 className="text-accent max-w-md text-base font-black uppercase leading-none md:text-lg">
             {heroText}
           </h1>
         </motion.div>
