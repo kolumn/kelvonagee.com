@@ -119,7 +119,7 @@ export default function Hero() {
           transition={{ delay: 1.5 }}
           className="-ml-10 mix-blend-difference will-change-transform md:-ml-16"
         >
-          <h1 className="max-w-md text-base font-black uppercase leading-none text-gray-600 md:text-lg">
+          <h1 className="max-w-md text-base font-black uppercase leading-none text-gray-200 md:text-lg">
             {heroText}
           </h1>
         </motion.div>

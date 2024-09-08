@@ -17,11 +17,11 @@ module.exports = {
       xs: ['0.625rem', '.95rem'],
       sm: ['0.75rem', '1rem'],
       base: ['0.875rem', '1.35rem'],
-      lg: ['2rem', '1.75rem'],
+      lg: ['2rem', '1.85rem'],
     },
     extend: {
       colors: {
-        accent: '#EAAA00',
+        accent: '#CE1141',
       },
       boxShadow: {
         highlight: 'inset 0 0 0 1px rgba(255, 255, 255, 0.05)',
