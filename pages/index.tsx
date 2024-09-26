@@ -24,7 +24,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   return (
     <Layout>
       <Hero />
-      <div className="mx-auto max-w-[1960px] p-2 md:p-4 lg:p-8">
+      <div className="p-2 md:p-4">
         {photoId && (
           <Modal
             images={images}

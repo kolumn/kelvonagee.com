@@ -44,9 +44,11 @@ export default function Navbar() {
     switch (id) {
       case 'about':
         aboutRef?.scrollIntoView({ behavior: 'smooth' })
+        setActiveSection('about')
         break
       case 'photos':
         photosRef?.scrollIntoView({ behavior: 'smooth' })
+        setActiveSection('photos')
         break
       case 'reel':
         toggleVideo()

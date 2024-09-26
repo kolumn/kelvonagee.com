@@ -59,9 +59,9 @@ export default function Hero() {
     <div
       ref={localAboutRef}
       id="about"
-      className="relative grid min-h-[calc(100dvh_-_65px)] scroll-mt-[65px] grid-cols-1 grid-rows-2 bg-white md:h-[calc(100dvh_-_65px)] md:grid-cols-2 md:grid-rows-1"
+      className="relative flex min-h-[calc(100dvh_-_65px)] scroll-mt-[65px] flex-col bg-white md:h-[calc(100dvh_-_65px)] md:flex-row"
     >
-      <div className="flex flex-col p-2 sm:col-span-2 md:col-span-1 md:justify-between md:p-4">
+      <div className="flex flex-col p-2 md:col-span-3 md:w-1/2 md:justify-between md:p-4">
         <div>&nbsp;</div>
         <motion.div
           initial={false}
@@ -76,7 +76,7 @@ export default function Hero() {
                 <h4 className="font-bold text-black/30">About</h4>
                 <div className="flex flex-col gap-y-4">
                   <div
-                    className="flex flex-col gap-y-4"
+                    className="min-w-2xl flex flex-col gap-y-4"
                     dangerouslySetInnerHTML={{ __html: heroText }}
                   />
                   <div className="cursor-pointer" onClick={toggleVideo}>
@@ -132,7 +132,7 @@ export default function Hero() {
           </div>
         </motion.div>
       </div>
-      <div className="relative h-full w-full overflow-hidden p-2 md:p-0 md:pb-4 md:pr-4">
+      <div className="relative col-span-4 aspect-[5/8] overflow-hidden p-2 md:col-span-3 md:w-1/2 md:p-0 md:pb-4 md:pr-4">
         <motion.div
           className="relative h-full w-full will-change-transform"
           initial={{ opacity: 0, scale: 1.2 }}
@@ -142,7 +142,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1 }}
         >
           <Image
-            className="object-cover lg:object-bottom"
+            className="object-cover"
             src={heroPhoto}
             alt=""
             onLoad={() => setIsLoaded(true)}

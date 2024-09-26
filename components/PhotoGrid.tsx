@@ -36,7 +36,7 @@ export default function PhotoGrid({
     <div
       ref={photosRef}
       id="photos"
-      className="scroll-mt-[65px] columns-2 gap-2 sm:columns-3 md:gap-4 xl:columns-6 2xl:columns-8 "
+      className="scroll-mt-[65px] columns-2 gap-2 sm:columns-3 md:gap-4 xl:columns-6 2xl:columns-8"
     >
       {images.map(
         ({ id, public_id, format, blurDataUrl, topLevelDirectory }) => (
@@ -47,7 +47,7 @@ export default function PhotoGrid({
             // @ts-ignore
             ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
             shallow
-            className="relative mb-2 block w-full scale-[.80] cursor-zoom-in opacity-80 transition-all duration-300 after:pointer-events-none hover:scale-100 hover:opacity-100 md:mb-4"
+            className="relative mb-2 block w-full cursor-zoom-in after:pointer-events-none hover:opacity-100 sm:scale-[.80] sm:opacity-80 sm:transition-all sm:duration-300 sm:hover:scale-100 md:mb-4"
           >
             <>
               <Image
