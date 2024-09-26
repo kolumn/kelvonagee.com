@@ -84,8 +84,8 @@ export default function SharedModal({
         <div className="w-full overflow-hidden">
           <div
             className={cn(
-              'relative flex aspect-[3/2] items-center justify-center',
-              { 'aspect-[4/5] max-h-[80dvh] mx-auto': !isLandscape }
+              'relative mx-auto flex aspect-[3/2] max-h-[75vh] items-center justify-center',
+              { 'mx-auto aspect-[4/5] max-h-[80dvh]': !isLandscape }
             )}
           >
             <AnimatePresence initial={false} custom={direction}>
@@ -120,7 +120,7 @@ export default function SharedModal({
                 <>
                   {index > 0 && (
                     <button
-                      className="absolute left-3 top-[calc(50%-16px)] p-3 text-white/75 mix-blend-overlay transition hover:text-white focus:outline-none"
+                      className="absolute left-3 top-[calc(50%-16px)] p-3 text-black/75 mix-blend-overlay transition hover:text-black focus:outline-none"
                       style={{ transform: 'translate3d(0, 0, 0)' }}
                       onClick={() => changePhotoId(index - 1)}
                     >
@@ -129,7 +129,7 @@ export default function SharedModal({
                   )}
                   {index + 1 < images.length && (
                     <button
-                      className="absolute right-3 top-[calc(50%-16px)] p-3 text-white/75 mix-blend-overlay transition hover:text-white focus:outline-none"
+                      className="absolute right-3 top-[calc(50%-16px)] p-3 text-black/75 mix-blend-overlay transition hover:text-black focus:outline-none"
                       style={{ transform: 'translate3d(0, 0, 0)' }}
                       onClick={() => changePhotoId(index + 1)}
                     >
@@ -173,10 +173,10 @@ export default function SharedModal({
                   <ArrowDownTrayIcon className="h-5 w-5" />
                 </button>
               </div> */}
-              <div className="absolute left-0 top-0 flex items-center gap-2 p-3 text-white">
+              <div className="absolute left-0 top-0 flex items-center gap-2 p-3 text-black">
                 <button
                   onClick={() => closeModal()}
-                  className="p-2 text-white/75 mix-blend-overlay transition hover:text-white"
+                  className="p-2 text-black/75 mix-blend-overlay transition hover:text-black"
                 >
                   {navigation ? (
                     <XMarkIcon className="h-5 w-5" />
@@ -189,7 +189,7 @@ export default function SharedModal({
           )}
           {/* Bottom Nav bar */}
           {navigation && (
-            <div className="fixed inset-x-0 bottom-0 z-40 overflow-hidden bg-gradient-to-b from-black/0 to-black/60">
+            <div className="fixed inset-x-0 bottom-0 z-40 overflow-hidden bg-gradient-to-b from-black/0 to-white/60">
               <motion.div
                 initial={false}
                 className="mx-auto mb-6 mt-6 flex aspect-[3/2] h-14"
@@ -211,7 +211,7 @@ export default function SharedModal({
                       key={id}
                       className={`${
                         id === index
-                          ? 'z-20 rounded-md shadow shadow-black/50'
+                          ? 'z-20 rounded-md shadow shadow-white/50'
                           : 'z-10'
                       } ${id === 0 ? 'rounded-l-md' : ''} ${
                         id === images.length - 1 ? 'rounded-r-md' : ''

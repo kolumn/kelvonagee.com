@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 html {
-  font-family: var(--font-roboto-mono);
+  @apply scroll-smooth text-black/90;
+  font-family: var(--font-inter);
+}
+
+p {
+  @apply font-medium;
 }
 
 h1,
@@ -11,15 +16,10 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: var(--font-inter);
 }
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
   img[loading='lazy'] {
     clip-path: inset(0.6px);
   }
-}
-
-.hero-frame {
-  @apply mx-2 mt-2 w-[calc(100vw_-_1rem)] md:mx-4 md:mt-4 md:h-[calc(100vh_-_6rem)] md:w-[calc(100vw_-_2rem)] md:grid-cols-2 xl:h-[calc(100vh_-_2rem)];
 }

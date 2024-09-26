@@ -37,6 +37,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       height: result.height,
       width: result.width,
       public_id: result.public_id,
+      topLevelDirectory: result.public_id?.split('/')[0],
       format: result.format,
     })
     i++
