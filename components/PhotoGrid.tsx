@@ -36,7 +36,7 @@ export default function PhotoGrid({
     <div
       ref={photosRef}
       id="photos"
-      className="scroll-mt-[65px] columns-2 gap-2 sm:columns-3 md:gap-4 xl:columns-6 2xl:columns-8"
+      className="scroll-mt-[65px] columns-2 gap-2 sm:columns-3 md:gap-4 xl:columns-6"
     >
       {images.map(
         ({ id, public_id, format, blurDataUrl, topLevelDirectory }) => (
